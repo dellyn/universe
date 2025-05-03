@@ -17,7 +17,7 @@
     "fix-server-alias": "tsc-alias -p ./src/server/tsconfig.json",
     "start-dev-server": "yarn fix-server-alias && yarn start",
     "dev-server": "tsc-watch --noClear -b ./src/server/tsconfig.json --onSuccess \"yarn start-dev-server\"",
-    "dev": "concurrently --prefix \"[{name}]\" --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgGreen.bold\" \"npm run dev-server\" \"npm run dev-client\"",
+    "dev": "kill $(lsof -ti:3000) & concurrently --prefix \"[{name}]\" --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgGreen.bold\" \"npm run dev-server\" \"npm run dev-client\"",
     "build": "yarn clean && concurrently --prefix \"[{name}]\" --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgGreen.bold\" \"npm run build-server\" \"npm run build-client\""
   },
   "keywords": [
@@ -31,6 +31,7 @@
     "body-parser": "^1.20.3",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
+    "path-to-regexp": "^8.2.0",
     "react-router-dom": "^7.5.3"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
 import http, { IncomingMessage, ServerResponse } from 'http';
 import * as config from './config';
-import { handleApiRequest } from './routes/api-router';
-import { handleClientRequest } from './routes/unified-router';
+import { handleApiRequest } from '@routes/apiRoutes';
+import { handleClientRequest } from '@routes/unifiedRouter';
 
 console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
 console.log(`config: ${JSON.stringify(config, null, 2)}`);
@@ -10,7 +10,6 @@ function setupServer() {
   const server = http.createServer(async (req: IncomingMessage, res: ServerResponse) => {
     try {
       const isApiRequest = await handleApiRequest(req, res);
-      
       if (!isApiRequest) {
         await handleClientRequest(req, res);
       }

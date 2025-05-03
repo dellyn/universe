@@ -22,10 +22,14 @@
     "useDefineForClassFields": true,
     "paths": {
       "@shared/*": ["../shared/*"],
-      "@routes/*": ["../routes/*"],
-      "@libraries/*": ["../libraries/*"]
+      "@controllers/*": ["./controllers/*"],
+      "@routes/*": ["./routes/*"],
+      "@libraries/*": ["../@libraries/*"],
+      "@interfaces/*": ["./interfaces/*"],
+      "@models/*": ["./models/*"],
+      "@middleware/*": ["./middleware/*"]
     }
   },
-  "include": ["**/*.ts", "../shared/*", "../libraries/**/*"],
+  "include": ["**/*.ts", "../shared/*", "../@libraries/**/*"],
   "exclude": ["**/*.test.ts"]
 }

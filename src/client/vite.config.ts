@@ -2,11 +2,10 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import tsconfig from './tsconfig.json';
-import { normalizePathes } from '../libraries/node/typescript/normalizePathes';
+import { normalizePathes } from '../@libraries/node/typescript/normalizePathes';
 
 const tsConfigPaths = tsconfig.compilerOptions.paths;
 const alias = normalizePathes(tsconfig.compilerOptions.paths, __dirname);
-console.log({tsConfigPaths, alias});
 export default defineConfig({
   resolve: {
     alias,

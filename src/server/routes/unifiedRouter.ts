@@ -3,7 +3,7 @@ import path from 'path';
 import url from 'url';
 import { IncomingMessage, ServerResponse } from 'http';
 import ejs from 'ejs';
-import { getManifest } from './manifest-manager';
+import { getManifest } from './manifestManager';
 import * as config from '../config';
 
 
