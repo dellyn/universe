@@ -10,9 +10,7 @@ export function enhanceRequest(req: IncomingMessage): Promise<Request> {
     
     enhancedReq.query = parsedUrl.query as Record<string, string>;
     
-    if (['GET', 'POST', 'PUT', 'PATCH'].includes(req.method || '')) {
-
-
+    if (['GET', 'POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method || '')) {
  
       resolve(enhancedReq);
     } else {
