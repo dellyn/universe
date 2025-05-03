@@ -21,9 +21,11 @@
     "allowSyntheticDefaultImports": true,
     "useDefineForClassFields": true,
     "paths": {
-      "@shared/*": ["../shared/*"]
+      "@shared/*": ["../shared/*"],
+      "@routes/*": ["../routes/*"],
+      "@libraries/*": ["../libraries/*"]
     }
   },
-  "include": ["**/*.ts", "../shared/*"],
+  "include": ["**/*.ts", "../shared/*", "../libraries/**/*"],
   "exclude": ["**/*.test.ts"]
 }

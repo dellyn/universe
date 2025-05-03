@@ -1,8 +1,7 @@
-import HomeIcon from '@mui/icons-material/Home';
-import { Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import HomeIcon from '@icons/Home';
+import { Toolbar, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@ui-library';
 import React from 'react';
 import { Link as RouterLink } from 'react-router';
-import Toolbar from '@mui/material/Toolbar';
 
 const drawerWidth = 240;
 

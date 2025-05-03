@@ -1,4 +1,4 @@
-import { Box, CssBaseline, Toolbar } from '@mui/material';
+import { Box, CssBaseline, Toolbar } from '@ui-library';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { Header } from './components/Header';

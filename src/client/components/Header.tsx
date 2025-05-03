@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Typography } from '@mui/material';
+import { AppBar, Toolbar, Typography } from '@ui-library';
 import React from 'react';
 
 export const Header: React.FC = () => {

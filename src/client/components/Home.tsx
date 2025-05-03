@@ -1,6 +1,4 @@
-import { CardHeader, Typography } from '@mui/material';
-import Card from '@mui/material/Card';
-import Grid from '@mui/material/Grid';
+import { Card, CardHeader, Grid, Typography } from '@ui-library';
 import React, { useEffect, useState } from 'react';
 import { testAlias } from '@shared/testAlias';
 
@@ -9,7 +7,6 @@ export const Home: React.FC = () => {
   
   useEffect(() => {
     testAlias();
-    
     fetch('/api/test-alias')
       .then(response => response.json())
       .then(data => setServerAliasTest(data.message))
