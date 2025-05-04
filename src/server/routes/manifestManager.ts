@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { IS_DEV } from '../config';
+import { IS_DEV } from '../config/env';
 
 let manifestCache: any;
 

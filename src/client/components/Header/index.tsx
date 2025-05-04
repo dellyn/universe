@@ -1,16 +1,9 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Button, Box } from '@ui-library';
-import { useAuth } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useAuthNavigation } from '../../hooks/useAuthNavigation';
 
 export const Header: React.FC = () => {
-  const { user, isAuthenticated, logout } = useAuth();
-  const navigate = useNavigate();
-  
-  const handleLogout = async () => {
-    await logout();
-    navigate('/auth', { replace: true });
-  };
+  const { user, isAuthenticated, handleLogout } = useAuthNavigation();
   
   return (
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>

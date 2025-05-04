@@ -19,8 +19,11 @@
       "@components/*": ["./components/*"],
       "@pages/*": ["./pages/*"],
       "@data/*": ["../data/*"],
+      "@state/*": ["./state/*"],
+      "@hooks/*": ["./hooks/*"],
       "@ui-library": ["../../node_modules/@mui/material"],
       "@icons/*": ["../../node_modules/@mui/icons-material/*"],
+      "@packages/*": ["../@packages/*"],
       "@libraries/*": ["../@libraries/*"]
     }
   },

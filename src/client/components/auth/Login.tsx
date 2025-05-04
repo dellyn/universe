@@ -1,38 +1,31 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography, Paper } from '@ui-library';
+import { useAuthNavigation } from '../../hooks/useAuthNavigation';
 
-interface LoginProps {
-  onLogin: (token: string) => void;
-}
-
-export const Login: React.FC<LoginProps> = ({ onLogin }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export const Login: React.FC = () => {
+  const [email, setEmail] = useState('testuser@mail.com');
+  const [password, setPassword] = useState('4$^wglhw92uFOvWm');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const { api, handleLogin } = useAuthNavigation();
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setIsLoading(true);
     
     try {
-      const response = await fetch('/api/v1/auth/login', {
+      const response = await api('/auth/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
+        data: { email, password }
       });
       
-      const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.error || 'Login failed');
-      }
-      
-      localStorage.setItem('token', data.token);
-      onLogin(data.token);
+      // Use the accessToken from the response
+      await handleLogin(response.data.accessToken);
     } catch (err: any) {
-      setError(err.message);
+      setError(err.response?.data?.error || err.message || 'Login failed');
+    } finally {
+      setIsLoading(false);
     }
   };
   
@@ -53,6 +46,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
           onChange={(e) => setEmail(e.target.value)}
           margin="normal"
           required
+          disabled={isLoading}
         />
         
         <TextField
@@ -63,6 +57,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
           onChange={(e) => setPassword(e.target.value)}
           margin="normal"
           required
+          disabled={isLoading}
         />
         
         <Button 
@@ -70,8 +65,9 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
           type="submit" 
           variant="contained" 
           sx={{ mt: 2 }}
+          disabled={isLoading}
         >
-          Login
+          {isLoading ? 'Logging in...' : 'Login'}
         </Button>
       </form>
     </Box>

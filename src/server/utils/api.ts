@@ -1,6 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import url from 'url';
 import { match } from 'path-to-regexp';
+import { StatusCodes } from 'http-status-codes';
 import { Request, Response } from '@interfaces/api';
 
 export function enhanceRequest(req: IncomingMessage): Promise<Request> {
@@ -10,9 +11,26 @@ export function enhanceRequest(req: IncomingMessage): Promise<Request> {
     
     enhancedReq.query = parsedUrl.query as Record<string, string>;
     
-    if (['GET', 'POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method || '')) {
- 
-      resolve(enhancedReq);
+    if (['POST', 'PUT', 'PATCH'].includes(req.method || '')) {
+      let body = '';
+      
+      req.on('data', (chunk) => {
+        body += chunk.toString();
+      });
+      
+      req.on('end', () => {
+        try {
+          if (body) {
+            enhancedReq.body = JSON.parse(body);
+          } else {
+            enhancedReq.body = {};
+          }
+          resolve(enhancedReq);
+        } catch (e) {
+          enhancedReq.body = {}; 
+          resolve(enhancedReq);
+        }
+      });
     } else {
       resolve(enhancedReq);
     }
@@ -22,16 +40,28 @@ export function enhanceRequest(req: IncomingMessage): Promise<Request> {
 export function enhanceResponse(res: ServerResponse): Response {
   const enhancedRes = res as Response;
   
-  enhancedRes.json = (data: any, statusCode = 200) => {
+  enhancedRes.json = (data: any, statusCode = StatusCodes.OK) => {
+    if (enhancedRes.writableEnded) {
+      console.warn('Attempted to send JSON response after response was already sent');
+      return enhancedRes;
+    }
+    
     enhancedRes.statusCode = statusCode;
     enhancedRes.setHeader('Content-Type', 'application/json');
     enhancedRes.end(JSON.stringify(data));
+    return enhancedRes;
   };
   
-  enhancedRes.error = (message: string, statusCode = 500) => {
+  enhancedRes.error = (message: string, statusCode = StatusCodes.INTERNAL_SERVER_ERROR) => {
+    if (enhancedRes.writableEnded) {
+      console.warn('Attempted to send error response after response was already sent');
+      return enhancedRes;
+    }
+    
     enhancedRes.statusCode = statusCode;
     enhancedRes.setHeader('Content-Type', 'application/json');
     enhancedRes.end(JSON.stringify({ error: message }));
+    return enhancedRes;
   };
   
   return enhancedRes;

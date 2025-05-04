@@ -31,6 +31,15 @@ COPY --from=build /app/assets ./assets
 COPY --from=build /app/views ./views
 COPY index.js ./
 
+# Create a non-root user
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+# Set proper permissions
+RUN chown -R appuser:appgroup /app
+
+# Switch to non-root user for better security
+USER appuser
+
 # Expose the port the app runs on
 EXPOSE 3000
 

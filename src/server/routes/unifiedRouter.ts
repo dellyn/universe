@@ -3,8 +3,9 @@ import path from 'path';
 import url from 'url';
 import { IncomingMessage, ServerResponse } from 'http';
 import ejs from 'ejs';
+import { StatusCodes } from 'http-status-codes';
 import { getManifest } from './manifestManager';
-import * as config from '../config';
+import * as config from '../config/env';
 
 
 export async function handleClientRequest(req: IncomingMessage, res: ServerResponse): Promise<boolean> {
@@ -33,7 +34,7 @@ export async function handleClientRequest(req: IncomingMessage, res: ServerRespo
         };
         
         res.setHeader('Content-Type', contentTypeMap[ext] || 'application/octet-stream');
-        res.statusCode = 200;
+        res.statusCode = StatusCodes.OK;
         res.end(fileContent);
         return true;
       }
@@ -50,13 +51,13 @@ export async function handleClientRequest(req: IncomingMessage, res: ServerRespo
     });
     
     res.setHeader('Content-Type', 'text/html');
-    res.statusCode = 200;
+    res.statusCode = StatusCodes.OK;
     res.end(html);
     return true;
     
   } catch (error) {
     console.error('Error handling client request:', error);
-    res.statusCode = 500;
+    res.statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
     res.end('Internal Server Error');
     return true;
   }

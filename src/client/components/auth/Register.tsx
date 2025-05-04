@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography, Paper } from '@ui-library';
+import { useAuthNavigation } from '../../hooks/useAuthNavigation';
 
-interface RegisterProps {
-  onRegister: (token: string) => void;
-}
-
-export const Register: React.FC<RegisterProps> = ({ onRegister }) => {
+export const Register: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const { api, handleLogin } = useAuthNavigation();
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,25 +19,20 @@ export const Register: React.FC<RegisterProps> = ({ onRegister }) => {
       return;
     }
     
+    setIsLoading(true);
+    
     try {
-      const response = await fetch('/api/v1/auth/register', {
+      const response = await api('/auth/register', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
+        data: { email, password }
       });
       
-      const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.error || 'Registration failed');
-      }
-      
-      localStorage.setItem('token', data.token);
-      onRegister(data.token);
+      // Use the accessToken from the response
+      await handleLogin(response.data.accessToken);
     } catch (err: any) {
-      setError(err.message);
+      setError(err.response?.data?.error || err.message || 'Registration failed');
+    } finally {
+      setIsLoading(false);
     }
   };
   
@@ -59,6 +53,7 @@ export const Register: React.FC<RegisterProps> = ({ onRegister }) => {
           onChange={(e) => setEmail(e.target.value)}
           margin="normal"
           required
+          disabled={isLoading}
         />
         
         <TextField
@@ -69,6 +64,7 @@ export const Register: React.FC<RegisterProps> = ({ onRegister }) => {
           onChange={(e) => setPassword(e.target.value)}
           margin="normal"
           required
+          disabled={isLoading}
         />
         
         <TextField
@@ -79,6 +75,7 @@ export const Register: React.FC<RegisterProps> = ({ onRegister }) => {
           onChange={(e) => setConfirmPassword(e.target.value)}
           margin="normal"
           required
+          disabled={isLoading}
         />
         
         <Button 
@@ -86,8 +83,9 @@ export const Register: React.FC<RegisterProps> = ({ onRegister }) => {
           type="submit" 
           variant="contained" 
           sx={{ mt: 2 }}
+          disabled={isLoading}
         >
-          Register
+          {isLoading ? 'Registering...' : 'Register'}
         </Button>
       </form>
     </Box>

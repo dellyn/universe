@@ -27,7 +27,11 @@
       "@libraries/*": ["../@libraries/*"],
       "@interfaces/*": ["./interfaces/*"],
       "@models/*": ["./models/*"],
-      "@middleware/*": ["./middleware/*"]
+      "@services/*": ["./services/*"],
+      "@database/*": ["./database/*"],
+      "@middleware/*": ["./middleware/*"],
+      "@config/*": ["./config/*"],
+      "@packages/*": ["../@packages/*"]
     }
   },
   "include": ["**/*.ts", "../shared/*", "../@libraries/**/*"],

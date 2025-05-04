@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-import { Box, Button, Typography } from '@ui-library';
+import { Box, Button, CircularProgress } from '@ui-library';
 import { Login } from './Login';
 import { Register } from './Register';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useAuth } from '@state/AuthContext';
 
-interface AuthPageProps {
-  onAuthenticated: (token: string) => void;
-}
-
-export const AuthPage: React.FC<AuthPageProps> = ({ onAuthenticated }) => {
+export const AuthPage: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
+  const { isAuthenticated, isLoading } = useAuth();
   
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -30,12 +28,24 @@ export const AuthPage: React.FC<AuthPageProps> = ({ onAuthenticated }) => {
     navigate(`/auth?mode=${newMode ? 'login' : 'register'}`, { replace: true });
   };
   
+  if (isLoading) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+        <CircularProgress />
+      </Box>
+    );
+  }
+  
+  if (isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
+  
   return (
     <Box sx={{ maxWidth: 500, mx: 'auto', mt: 4 }}>
       {isLogin ? (
-        <Login onLogin={onAuthenticated} />
+        <Login />
       ) : (
-        <Register onRegister={onAuthenticated} />
+        <Register />
       )}
       
       <Box textAlign="center" mt={2}>
