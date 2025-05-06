@@ -10,31 +10,13 @@ Hi, and thanks again for the technical task!
 
 ### Installation
 
-1. Install dependencies:
-   ```
-   npm install
-   ```
-
-1.1 . Start the application with Docker:
+1. Start the application with Docker:
    ```
    docker-compose up --build -d
    ```
-   
-2. Set up environment variables:
-   Create a `.env` file in the root directory with the following variables:
-   ```
-    MONGODB_URI=
-    JWT_ACCESS_SECRET=
-    JWT_REFRESH_SECRET=
-    RESEND_TOKEN=
-    TEST_USER_EMAIL=
-    TEST_USER_PASSWORD=
-    DB_NAME=
-   ```
 
+2. Access the application: http://localhost:3000
 
-   
-4. Access the application: http://localhost:3000
 
 ## API Documentation
 
@@ -90,7 +72,7 @@ This approach allows for better scaling and theming flexibility. I didn’t full
 │   │   ├── theme/
 │   ├── data/            
 │   │   └── types          # Core data of the Application. User, Repositories
-│   │   └── apiInterfaces  # Interface to communicate between clien and servers
+│   │   └── apiInterfaces  # Interfaces to communicate between client and servers
 │   ├── server/            
 │   │   ├── config/
 │   │   ├── controllers/
