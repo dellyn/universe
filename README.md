@@ -100,3 +100,8 @@ This approach allows for better scaling and theming flexibility. I didn’t full
 │   │   ├── models/
 │   │   ├── routes/
 │   │   └── services/
+```
+
+## Demo
+![Area2](https://github.com/user-attachments/assets/6b98c91e-889b-418b-8030-047728fff841)
+
