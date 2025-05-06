@@ -1,0 +1,20 @@
+.verification-code-container {
+  padding: 16px;
+}
+
+.code-inputs-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.resend-container {
+  text-align: center;
+  margin-top: 24px;
+} 

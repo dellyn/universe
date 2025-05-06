@@ -1,0 +1,57 @@
+@use '../../../theme/vars.scss' as vars;
+
+.repository-item {
+  &-container {
+    margin-bottom: vars.$space-2;
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: vars.$space-1;
+  }
+
+  &-info {
+    display: flex;
+    gap: vars.$space-2;
+  }
+
+  &-actions {
+    display: flex;
+  }
+
+  &-divider {
+    margin: vars.$space-1 0;
+  }
+
+  &-url {
+    display: flex;
+    align-items: center;
+    margin-bottom: vars.$space-1;
+  }
+
+  &-link {
+    margin-left: vars.$space-1;
+  }
+
+  &-stats {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: vars.$space-2;
+  }
+
+  &-stat {
+    display: flex;
+    align-items: center;
+    margin-right: vars.$space-3;
+  }
+
+  &-text {
+    margin-left: calc(vars.$space-1 / 2);
+  }
+
+  &-date {
+    color: rgba(0, 0, 0, 0.6);
+  }
+} 

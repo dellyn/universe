@@ -1,0 +1,32 @@
+@use '../../../theme/vars.scss' as vars;
+
+.add-repository {
+  &-container {
+    margin-bottom: vars.$space-3;
+
+    .title {
+      margin-bottom: vars.$space-2;
+    }
+  }
+
+
+
+  &-form {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &-input {
+    margin-right: vars.$space-2;
+    flex-grow: 1;
+  }
+
+  &-button {
+    min-width: 100px;
+    height: 56px;
+  }
+
+  &-error {
+    margin-top: vars.$space-2;
+  }
+} 

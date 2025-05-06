@@ -19,4 +19,11 @@ export default defineConfig({
       input: './src/client/client.tsx',
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '',
+      },
+    },
+  },
 });

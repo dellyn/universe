@@ -8,3 +8,5 @@ tmp/
 notes/
 *.secret
 production.env
+.cursorrules
+test-results/

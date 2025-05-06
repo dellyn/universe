@@ -1,0 +1,28 @@
+@use '../../../theme/vars.scss' as vars;
+.repository-list {
+
+  &-container {
+    padding: vars.$space-3;
+
+    .fun-warning{
+      font-size: 12px;
+      position: fixed;
+      bottom: 0;
+      background: #e4f0ff;
+      padding: 4px 16px;
+      opacity: 1;
+      z-index: 9;
+      border-radius: 16px;
+    }
+  }
+
+  &-loading {
+    display: flex;
+    justify-content: center;
+    padding: vars.$space-4 0;
+  }
+
+  &-items {
+    display: block;
+  }
+} 

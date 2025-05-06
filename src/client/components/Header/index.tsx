@@ -1,9 +1,11 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Button, Box } from '@ui-library';
-import { useAuthNavigation } from '../../hooks/useAuthNavigation';
+import { useAuthContext } from '@state/AuthContext';
+import { useAuth } from '@hooks/auth/useAuth';
 
 export const Header: React.FC = () => {
-  const { user, isAuthenticated, handleLogout } = useAuthNavigation();
+  const { user, isAuthenticated } = useAuthContext();
+  const { logout } = useAuth();
   
   return (
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
@@ -17,7 +19,7 @@ export const Header: React.FC = () => {
             <Typography variant="body1" sx={{ mr: 2 }}>
               {user?.email}
             </Typography>
-            <Button color="inherit" onClick={handleLogout}>
+            <Button color="inherit" onClick={logout}>
               Logout
             </Button>
           </Box>

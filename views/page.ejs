@@ -6,6 +6,15 @@
         <link rel="icon" href="/assets/favicon.ico"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <% if (!IS_DEV) { %>
+            <% Object.keys(manifest).forEach((key) => { %>
+                <% if (manifest[key].css) { %>
+                    <% manifest[key].css.forEach((cssFile) => { %>
+                        <link rel="stylesheet" href="/assets/<%= cssFile.split('/').pop() %>">
+                    <% }); %>
+                <% } %>
+            <% }); %>
+        <% } %>
     </head>
     <body>
         <div class="container">

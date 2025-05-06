@@ -20,11 +20,16 @@
       "@pages/*": ["./pages/*"],
       "@data/*": ["../data/*"],
       "@state/*": ["./state/*"],
+      "@services/*": ["./services/*"],
+      "@api/*": ["./api/*"],
       "@hooks/*": ["./hooks/*"],
       "@ui-library": ["../../node_modules/@mui/material"],
       "@icons/*": ["../../node_modules/@mui/icons-material/*"],
       "@packages/*": ["../@packages/*"],
-      "@libraries/*": ["../@libraries/*"]
+      "@libraries/*": ["../@libraries/*"],
+      "@tests/*": ["./tests/*"],
+      "@interfaces": ["./interfaces/index.ts"]
+
     }
   },
   "include": ["**/*.ts", "**/*.tsx"]

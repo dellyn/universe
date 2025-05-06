@@ -1,0 +1,10 @@
+.input {
+  appearance: none;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

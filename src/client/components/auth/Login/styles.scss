@@ -1,0 +1,29 @@
+@use '../../../theme/vars.scss' as vars;
+
+.login {
+  &-container {
+    padding: vars.$space-2;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: vars.$space-4;
+  }
+
+  &-title {
+    margin-bottom: vars.$space-2;
+  }
+
+  &-error {
+    margin-bottom: vars.$space-2;
+    color: red;
+  }
+
+  &-form-field {
+    margin: vars.$space-1 0;
+    width: 100%;
+  }
+
+  &-submit-button {
+    margin-top: vars.$space-2;
+    width: 100%;
+  }
+} 

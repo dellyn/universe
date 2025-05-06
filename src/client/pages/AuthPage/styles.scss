@@ -1,0 +1,21 @@
+@use '../../theme/vars.scss' as vars;
+
+.auth-page {
+  &-container {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: vars.$space-4;
+  }
+
+  &-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  &-toggle-button {
+    text-align: center;
+    margin-top: vars.$space-2;
+  }
+} 
