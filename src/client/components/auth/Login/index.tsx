@@ -6,8 +6,8 @@ import { LoginProps } from './types';
 import './styles.scss';
 
 export const Login: React.FC<LoginProps> = () => {
-  const [email, setEmail] = useState('testuser@gmail.com');
-  const [password, setPassword] = useState('testuserPassword123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { login, isLoading, error } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -17,7 +17,7 @@ export const Login: React.FC<LoginProps> = () => {
   
   return (
     <Paper className="login-container" id={LoginSelectors.Container}>
-      <Typography variant="h5" className="login-title" id={LoginSelectors.Title}>Login2</Typography>
+      <Typography variant="h5" className="login-title" id={LoginSelectors.Title}>Login</Typography>
       
       {error && (
         <Typography className="login-error" id={LoginSelectors.Error}>{error}</Typography>

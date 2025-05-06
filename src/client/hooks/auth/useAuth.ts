@@ -30,6 +30,7 @@ export const useAuth = () => {
       
       tokenService.setToken(response.data.accessToken);
       setUser(response.data.user);
+      setShowVerificationDialog(true);
       return response.data;
     } catch (err: any) {
       setError(getErrorMessage(err));

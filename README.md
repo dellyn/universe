@@ -15,30 +15,26 @@ Hi, and thanks again for the technical task!
    npm install
    ```
 
+1.1 . Start the application with Docker:
+   ```
+   docker-compose up --build -d
+   ```
+   
 2. Set up environment variables:
    Create a `.env` file in the root directory with the following variables:
    ```
-    MONGODB_USER_PASSWORD=
-    MONGODB_USER_NAME=
     MONGODB_URI=
     JWT_ACCESS_SECRET=
     JWT_REFRESH_SECRET=
     RESEND_TOKEN=
-
-    DB_NAME=universeApp
-    SERVER_PORT=3000
-    TEST_USER_EMAIL="testuser@gmail.com"
-    TEST_USER_PASSWORD="testuserPassword123"
+    TEST_USER_EMAIL=
+    TEST_USER_PASSWORD=
+    DB_NAME=
    ```
 
-3. Start the application with Docker:
-   ```
-   docker-compose up -d
-   ```
+
    
-4. Access the application:
-   - Frontend: http://localhost:3001
-   - API: http://localhost:3000/api
+4. Access the application: http://localhost:3000
 
 ## API Documentation
 
@@ -59,14 +55,15 @@ Hi, and thanks again for the technical task!
 
 ## Notes
 
-Hi. So the note regarding styles - I have used pure MUI. But I don't like it and it goes with it's disadvantages.
-In an ideal setup, the UI layer should be scalable and decoupled from MUI. To achieve that, I usually structure components in layers and use SOLID principles to make sure I can easily replace ui library at scale:
+Hi! I have a quick note regarding styles and components — I used pure MUI in this task, but to be honest, I’m not a big fan of relying on it directly, as it comes with its own set of limitations.
+
+In an ideal setup, the UI layer should be scalable and decoupled from MUI. To achieve that, I usually structure components in layers and apply SOLID principles to ensure the UI library can be replaced easily and safely at scale:
 
 The goal is to streamline the component API using an adaptor pattern — making it backward-compatible and easily swappable. That way, we could replace MUI with another library by adjusting the adaptor layer without affecting the rest of the app.
 
 Every MUI component would be wrapped to align with our internal API. 
 
-This approach allows scaling and theming flexibility. I didn't fully implement it here due to time constraints, but would be happy to discuss the reasoning or dive deeper into specific decisions.
+This approach allows for better scaling and theming flexibility. I didn’t fully implement it here due to time constraints, but I’d be happy to explain the reasoning behind it or dive deeper into specific decisions if needed
 
 ## Project Structure
 
